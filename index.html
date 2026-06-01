@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekolah Sementara — Belajar Hal yang Tidak Diajarkan di Sekolah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            cream: '#FDFBF7',     /* Cream / off-white */
+                            card: '#FFFFFF',      /* Murni Putih */
+                            dark: '#0F172A',      /* Navy Gelap */
+                            muted: '#475569',     /* Slate Muted */
+                            softGray: '#F1F5F9',  /* Soft Gray */
+                            copper: '#D97706',    /* Warm Orange/Copper */
+                            copperHover: '#B45309'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #0F172A;
+        }
+        .glass-nav {
+            background: rgba(253, 251, 247, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-softGray selection:text-brand-copper overflow-x-hidden" x-data="{ openFellowship: false, openCerita: false, activeFaq: null }">
+
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-brand-dark/5 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-2">
+                <span class="font-bold text-lg tracking-tight text-brand-dark">Sekolah Sementara.</span>
+            </a>
+            
+            <div class="flex items-center space-x-10 text-sm font-medium text-brand-muted mx-auto md:mr-0 md:ml-auto">
+                <a href="#program" class="hover:text-brand-dark transition-colors">Program</a>
+                <a href="#about" class="hover:text-brand-dark transition-colors">Tentang Kami</a>
+                <a href="#collaboration" class="hover:text-brand-dark transition-colors">Kolaborasi</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-48 pb-24 min-h-[75vh] flex items-center">
+        <div class="absolute top-1/4 left-1/10 w-96 h-96 bg-brand-copper/5 rounded-full filter blur-3xl opacity-70 -z-10 animate-pulse" style="animation-duration: 8s;"></div>
+        <div class="absolute bottom-1/4 right-1/10 w-80 h-80 bg-brand-dark/5 rounded-full filter blur-3xl opacity-60 -z-10 animate-pulse" style="animation-duration: 12s;"></div>
+
+        <div class="max-w-4xl mx-auto px-6 text-center" data-aos="fade-up" data-aos-duration="1000">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-brand-dark tracking-tight leading-[1.15] mb-8">
+                Saatnya kamu menjadi bagian <br class="hidden sm:inline"> dari perjalanan ini!
+            </h1>
+            
+            <p class="text-base sm:text-lg md:text-xl text-brand-muted max-w-3xl mx-auto leading-relaxed mb-12 font-light">
+                Sebuah ruang inkubasi kepemimpinan yang menjembatani fase transisi pendidikan kamu dengan belajar langsung dari mentor yang berkompeten, desain kurikulum yang berorientasi pada masa depan, dan kesempatan untuk mengimplementasikan proyek sosial yang berdampak langsung pada masyarakat.
+            </p>
+            
+            <div class="flex items-center justify-center">
+                <a href="#program" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 font-semibold text-brand-cream bg-brand-dark rounded-full hover:bg-brand-copper shadow-md shadow-brand-dark/10 transition-all duration-300 group gap-2">
+                    Pelajari Program
+                    <i data-lucide="arrow-right" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform text-brand-copper group-hover:text-brand-cream"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="program" class="py-24 bg-white border-t border-brand-dark/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark tracking-tight">Program Kami</h2>
+                <div class="w-12 h-1 bg-brand-copper/30 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-12">
+                
+                <div class="p-8 rounded-[2rem] border transition-all duration-300 cursor-pointer text-left flex flex-col justify-between min-h-[300px]"
+                     :class="openFellowship ? 'bg-brand-cream/50 border-brand-copper shadow-md' : 'bg-brand-cream/20 border-brand-dark/5 shadow-sm hover:border-brand-copper/40'"
+                     @click="openFellowship = !openFellowship; if(openFellowship) openCerita = false;" data-aos="fade-right">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-brand-copper bg-brand-copper/10 px-3 py-1 rounded-full">Fellowship</span>
+                            <i :class="openFellowship ? 'chevron-up' : 'chevron-down'" class="w-5 h-5 text-brand-copper transition-transform duration-300"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-dark mb-4 tracking-tight">Setara Fellowship</h3>
+                        <p class="text-brand-muted text-sm leading-relaxed font-light text-justify">
+                            Setara Fellowship adalah program mentoring dan pengembangan diri selama 3 bulan yang dirancang bagi pelajar yang sedang berada dalam fase transisi (<span class="italic font-medium text-brand-dark">gap year</span>) menuju perguruan tinggi. Melalui pendampingan mentor, pembelajaran berbasis pengalaman, dan pengembangan kepemimpinan, program ini membantu peserta membangun kepercayaan diri, mengembangkan keterampilan yang relevan, serta mempersiapkan diri menghadapi kehidupan akademik dan peluang di masa depan.
+                        </p>
+                    </div>
+                    <div class="mt-6 text-xs font-medium text-brand-copper flex items-center gap-1.5">
+                        <span x-text="openFellowship ? 'Tutup detail kurikulum' : 'Klik untuk melihat detail kurikulum & timeline'"></span>
+                    </div>
+                </div>
+
+                <div class="p-8 rounded-[2rem] border transition-all duration-300 cursor-pointer text-left flex flex-col justify-between min-h-[300px]"
+                     :class="openCerita ? 'bg-brand-cream/50 border-brand-dark shadow-md' : 'bg-brand-cream/20 border-brand-dark/5 shadow-sm hover:border-brand-dark/40'"
+                     @click="openCerita = !openCerita; if(openCerita) openFellowship = false;" data-aos="fade-left">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-brand-muted bg-brand-softGray px-3 py-1 rounded-full">Forum Berbagi</span>
+                            <i :class="openCerita ? 'chevron-up' : 'chevron-down'" class="w-5 h-5 text-brand-dark transition-transform duration-300"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-dark mb-4 tracking-tight">Cerita Sebelum Kuliah</h3>
+                        <p class="text-brand-muted text-sm leading-relaxed font-light text-justify">
+                            Cerita Sebelum Kuliah adalah forum berbagi pengalaman yang menghadirkan mahasiswa, penerima beasiswa, profesional muda, dan berbagai sosok inspiratif untuk berbagi cerita, pelajaran, serta refleksi mengenai perjalanan mereka sebelum memasuki dunia perkuliahan.
+                        </p>
+                    </div>
+                    
+                    <div class="mt-6" x-show="openCerita" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0">
+                        <span class="inline-block px-4 py-1.5 rounded-xl bg-brand-dark text-brand-cream text-xs font-semibold tracking-wider uppercase animate-pulse">
+                            Coming Soon
+                        </span>
+                    </div>
+                    <div class="mt-6 text-xs font-medium text-brand-muted flex items-center gap-1.5" x-show="!openCerita">
+                        <span>Klik untuk informasi status program</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div x-show="openFellowship" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 transform -translate-y-4" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-4" class="mt-12 space-y-24 border-t border-brand-dark/5 pt-16">
+                
+                <div>
+                    <div class="text-center max-w-2xl mx-auto mb-12">
+                        <span class="text-brand-copper font-semibold text-xs tracking-wider uppercase block mb-2">Struktur Silabus</span>
+                        <h3 class="text-2xl font-bold text-brand-dark tracking-tight">Curriculum Framework</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-brand-cream/40 p-8 rounded-3xl border border-brand-dark/5 flex gap-5 items-start">
+                            <div class="w-10 h-10 rounded-xl bg-brand-copper/10 text-brand-copper flex-shrink-0 flex items-center justify-center shadow-sm"><i data-lucide="compass" class="w-5 h-5"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg text-brand-dark mb-2">Embracing the Gap & Mindset Reset</h4>
+                                <p class="text-brand-muted text-sm leading-relaxed font-light">Memahami masa transisi dengan lebih positif, mengatasi rasa bingung dan ketidakpastian, serta menemukan arah dan tujuan yang ingin dicapai.</p>
+                            </div>
+                        </div>
+                        <div class="bg-brand-cream/40 p-8 rounded-3xl border border-brand-dark/5 flex gap-5 items-start">
+                            <div class="w-10 h-10 rounded-xl bg-brand-copper/10 text-brand-copper flex-shrink-0 flex items-center justify-center shadow-sm"><i data-lucide="user-check" class="w-5 h-5"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg text-brand-dark mb-2">Self-Leadership</h4>
+                                <p class="text-brand-muted text-sm leading-relaxed font-light">Belajar mengenali diri sendiri, mengelola emosi, membangun disiplin, dan mengambil keputusan yang lebih baik dalam kehidupan sehari-hari.</p>
+                            </div>
+                        </div>
+                        <div class="bg-brand-cream/40 p-8 rounded-3xl border border-brand-dark/5 flex gap-5 items-start">
+                            <div class="w-10 h-10 rounded-xl bg-brand-copper/10 text-brand-copper flex-shrink-0 flex items-center justify-center shadow-sm"><i data-lucide="map" class="w-5 h-5"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg text-brand-dark mb-2">Productivity & Strategic Life Mapping</h4>
+                                <p class="text-brand-muted text-sm leading-relaxed font-light">Mengatur waktu dengan lebih efektif, menetapkan target yang jelas, serta menyusun rencana pendidikan dan pengembangan diri secara terarah.</p>
+                            </div>
+                        </div>
+                        <div class="bg-brand-cream/40 p-8 rounded-3xl border border-brand-dark/5 flex gap-5 items-start">
+                            <div class="w-10 h-10 rounded-xl bg-brand-copper/10 text-brand-copper flex-shrink-0 flex items-center justify-center shadow-sm"><i data-lucide="message-square-code" class="w-5 h-5"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg text-brand-dark mb-2">Strategic Narrative Engineering</h4>
+                                <p class="text-brand-muted text-sm leading-relaxed font-light">Melatih kemampuan berbicara, menyampaikan ide, membangun kepercayaan diri, serta mengomunikasikan gagasan secara jelas dan meyakinkan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="text-center max-w-2xl mx-auto mb-16">
+                        <span class="text-brand-copper font-semibold text-xs tracking-wider uppercase block mb-2">Alur Pembelajaran</span>
+                        <h3 class="text-2xl font-bold text-brand-dark tracking-tight">Program Journey</h3>
+                    </div>
+                    <div class="relative max-w-2xl mx-auto">
+                        <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-[2px] bg-brand-softGray -translate-x-1/2"></div>
+                        
+                        <div class="relative z-10 mb-12 flex flex-col md:flex-row items-start md:justify-between">
+                            <div class="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-brand-cream border-2 border-brand-copper flex items-center justify-center -translate-x-1/2 top-1.5 shadow-sm"><i data-lucide="clock" class="w-4 h-4 text-brand-copper animate-pulse"></i></div>
+                            <div class="w-full md:w-[44%] pl-12 md:pl-0 md:text-right">
+                                <span class="inline-block px-3 py-0.5 rounded-full bg-brand-cream border border-brand-dark/5 text-[11px] font-semibold text-brand-copper mb-2">Bulan Pertama | W1 - W4</span>
+                                <h4 class="font-bold text-lg text-brand-dark mb-3">Mindset and Self-Leadership</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed font-light text-left md:text-right">Pada fase ini, kamu akan belajar memahami diri sendiri, membangun pola pikir yang positif, meningkatkan kepercayaan diri, serta mengembangkan disiplin dan kemampuan mengelola diri dalam menghadapi masa transisi menuju perguruan tinggi.</p>
+                            </div>
+                            <div class="hidden md:block w-[44%]"></div>
+                        </div>
+
+                        <div class="relative z-10 mb-12 flex flex-col md:flex-row items-start md:justify-between">
+                            <div class="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-brand-cream border-2 border-brand-copper flex items-center justify-center -translate-x-1/2 top-1.5 shadow-sm"><i data-lucide="clock" class="w-4 h-4 text-brand-copper"></i></div>
+                            <div class="hidden md:block w-[44%]"></div>
+                            <div class="w-full md:w-[44%] pl-12 md:pl-0 text-left">
+                                <span class="inline-block px-3 py-0.5 rounded-full bg-brand-cream border border-brand-dark/5 text-[11px] font-semibold text-brand-copper mb-2">Bulan Kedua | W5 - W8</span>
+                                <h4 class="font-bold text-lg text-brand-dark mb-2">Productivity, Strategic Life Mapping, and Storytelling</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed font-light">Melalui sesi ini, kamu akan mengembangkan keterampilan mengelola waktu, menyusun rencana pendidikan dan pengembangan diri, serta melatih kemampuan komunikasi untuk menyampaikan ide dan pengalaman dengan lebih percaya diri.</p>
+                            </div>
+                        </div>
+
+                        <div class="relative z-10 flex flex-col md:flex-row items-start md:justify-between">
+                            <div class="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-brand-cream border-2 border-brand-copper flex items-center justify-center -translate-x-1/2 top-1.5 shadow-sm"><i data-lucide="clock" class="w-4 h-4 text-brand-copper animate-pulse"></i></div>
+                            <div class="w-full md:w-[44%] pl-12 md:pl-0 md:text-right">
+                                <span class="inline-block px-3 py-0.5 rounded-full bg-brand-cream border border-brand-dark/5 text-[11px] font-semibold text-brand-copper mb-2">Bulan Ketiga | W9 - W12</span>
+                                <h4 class="font-bold text-lg text-brand-dark mb-2">Capstone Mini Project</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed font-light text-left md:text-right">Sebagai penutup program, kamu akan merancang dan menjalankan mini project berdasarkan minat dan tujuan yang ingin kamu capai sebagai wadah untuk menerapkan pembelajaran, mengembangkan inisiatif, serta membangun portofolio yang mendukung perjalanan akademikmu ke depan.</p>
+                            </div>
+                            <div class="hidden md:block w-[44%]"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="text-center max-w-2xl mx-auto mb-12">
+                        <span class="text-brand-copper font-semibold text-xs tracking-wider uppercase block mb-2">Capaian Akhir</span>
+                        <h3 class="text-2xl font-bold text-brand-dark tracking-tight">Setelah Program, Peserta Akan Memiliki</h3>
+                    </div>
+                    <div class="flex overflow-x-auto md:grid md:grid-cols-2 gap-6 pb-6 md:pb-0 snap-x snap-mandatory no-scrollbar">
+                        <div class="p-6 rounded-3xl bg-brand-card border border-brand-dark/5 shadow-sm flex-shrink-0 w-[80vw] sm:w-[50vw] md:w-auto snap-center flex flex-col justify-between group">
+                            <div>
+                                <div class="w-9 h-9 rounded-xl bg-brand-dark text-brand-cream flex items-center justify-center mb-4 group-hover:bg-brand-copper transition-colors duration-300"><i data-lucide="layers" class="w-4 h-4"></i></div>
+                                <h4 class="font-bold text-base text-brand-dark mb-2">Capstone Mini Project Experience</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed font-light">Pengalaman merancang dan menjalankan mini project sebagai sarana menerapkan pembelajaran, mengembangkan inisiatif, dan meningkatkan kemampuan problem solving untuk masyarakat sekitar.</p>
+                            </div>
+                        </div>
+                        <div class="p-6 rounded-3xl bg-brand-card border border-brand-dark/5 shadow-sm flex-shrink-0 w-[80vw] sm:w-[50vw] md:w-auto snap-center flex flex-col justify-between group">
+                            <div>
+                                <div class="w-9 h-9 rounded-xl bg-brand-dark text-brand-cream flex items-center justify-center mb-4 group-hover:bg-brand-copper transition-colors duration-300"><i data-lucide="compass" class="w-4 h-4"></i></div>
+                                <h4 class="font-bold text-base text-brand-dark mb-2">Education and Career Plan</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed font-light">Gambaran yang lebih jelas mengenai tujuan pendidikan serta langkah-langkah yang dapat ditempuh untuk mencapai target di masa depan.</p>
+                            </div>
+                        </div>
+                        <div class="p-6 rounded-3xl bg-brand-card border border-brand-dark/5 shadow-sm flex-shrink-0 w-[80vw] sm:w-[50vw] md:w-auto snap-center flex flex-col justify-between group">
+                            <div>
+                                <div class="w-9 h-9 rounded-xl bg-brand-dark text-brand-cream flex items-center justify-center mb-4 group-hover:bg-brand-copper transition-colors duration-300"><i data-lucide="user-check" class="w-4 h-4"></i></div>
+                                <h4 class="font-bold text-base text-brand-dark mb-2">Self-Leadership Skills</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed font-light">Kemampuan yang lebih baik dalam mengenali diri, mengelola waktu, membangun disiplin, serta menghadapi tantangan dengan lebih percaya diri.</p>
+                            </div>
+                        </div>
+                        <div class="p-6 rounded-3xl bg-brand-card border border-brand-dark/5 shadow-sm flex-shrink-0 w-[80vw] sm:w-[50vw] md:w-auto snap-center flex flex-col justify-between group">
+                            <div>
+                                <div class="w-9 h-9 rounded-xl bg-brand-dark text-brand-cream flex items-center justify-center mb-4 group-hover:bg-brand-copper transition-colors duration-300"><i data-lucide="users" class="w-4 h-4"></i></div>
+                                <h4 class="font-bold text-base text-brand-dark mb-2">Mentor and Learning Network</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed font-light">Akses ke komunitas belajar, mentor, dan sesama peserta yang dapat menjadi ruang berbagi pengalaman, wawasan, dan peluang pengembangan diri di masa mendatang.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-8 border-t border-brand-dark/5">
+                    <div class="text-center max-w-2xl mx-auto mb-12">
+                        <span class="text-brand-copper font-semibold text-xs tracking-wider uppercase block mb-2">Tanya Jawab</span>
+                        <h3 class="text-2xl font-bold text-brand-dark tracking-tight">Frequently Asked Questions (FAQ)</h3>
+                    </div>
+                    <div class="space-y-4 max-w-3xl mx-auto">
+                        <div class="bg-white border border-brand-dark/5 rounded-2xl overflow-hidden shadow-sm">
+                            <button type="button" class="w-full px-6 py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper transition-colors" @click="activeFaq === 1 ? activeFaq = null : activeFaq = 1">
+                                <span>Apakah program Sekolah Sementara berbayar?</span>
+                                <i :data-lucide="activeFaq === 1 ? 'minus' : 'plus'" class="w-4 h-4 text-brand-copper"></i>
+                            </button>
+                            <div x-show="activeFaq === 1" x-collapse class="px-6 pb-5 text-sm text-brand-muted leading-relaxed font-light text-justify border-t border-brand-softGray pt-4">
+                                Tidak. Seluruh program Sekolah Sementara dapat diikuti secara gratis. Kami berkomitmen untuk menyediakan akses belajar dan pengembangan diri yang lebih inklusif bagi anak muda Indonesia.
+                            </div>
+                        </div>
+                        <div class="bg-white border border-brand-dark/5 rounded-2xl overflow-hidden shadow-sm">
+                            <button type="button" class="w-full px-6 py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper transition-colors" @click="activeFaq === 2 ? activeFaq = null : activeFaq = 2">
+                                <span>Siapa saja yang dapat mengikuti program ini?</span>
+                                <i :data-lucide="activeFaq === 2 ? 'minus' : 'plus'" class="w-4 h-4 text-brand-copper"></i>
+                            </button>
+                            <div x-show="activeFaq === 2" x-collapse class="px-6 pb-5 text-sm text-brand-muted leading-relaxed font-light text-justify border-t border-brand-softGray pt-4">
+                                Program ini ditujukan bagi pelajar SMA/sederajat, lulusan SMA yang sedang berada dalam masa transisi menuju perguruan tinggi, serta anak muda yang ingin mengembangkan diri dan mempersiapkan langkah berikutnya dalam pendidikan.
+                            </div>
+                        </div>
+                        <div class="bg-white border border-brand-dark/5 rounded-2xl overflow-hidden shadow-sm">
+                            <button type="button" class="w-full px-6 py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper transition-colors" @click="activeFaq === 3 ? activeFaq = null : activeFaq = 3">
+                                <span>Apakah saya harus sedang menjalani gap year untuk mendaftar?</span>
+                                <i :data-lucide="activeFaq === 3 ? 'minus' : 'plus'" class="w-4 h-4 text-brand-copper"></i>
+                            </button>
+                            <div x-show="activeFaq === 3" x-collapse class="px-6 pb-5 text-sm text-brand-muted leading-relaxed font-light text-justify border-t border-brand-softGray pt-4">
+                                Tidak. Program ini terbuka bagi siapa saja yang sedang mempersiapkan diri menuju perguruan tinggi, baik yang sedang menjalani gap year maupun yang masih bersekolah.
+                            </div>
+                        </div>
+                        <div class="bg-white border border-brand-dark/5 rounded-2xl overflow-hidden shadow-sm">
+                            <button type="button" class="w-full px-6 py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper transition-colors" @click="activeFaq === 4 ? activeFaq = null : activeFaq = 4">
+                                <span>Apa saja yang akan saya pelajari selama program berlangsung?</span>
+                                <i :data-lucide="activeFaq === 4 ? 'minus' : 'plus'" class="w-4 h-4 text-brand-copper"></i>
+                            </button>
+                            <div x-show="activeFaq === 4" x-collapse class="px-6 pb-5 text-sm text-brand-muted leading-relaxed font-light text-justify border-t border-brand-softGray pt-4">
+                                Peserta akan mempelajari berbagai topik seperti pengembangan diri, kepemimpinan, manajemen waktu, perencanaan pendidikan, komunikasi, serta mengembangkan mini project sebagai bentuk penerapan pembelajaran.
+                            </div>
+                        </div>
+                        <div class="bg-white border border-brand-dark/5 rounded-2xl overflow-hidden shadow-sm">
+                            <button type="button" class="w-full px-6 py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper transition-colors" @click="activeFaq === 5 ? activeFaq = null : activeFaq = 5">
+                                <span>Apakah kegiatan dilakukan secara online atau offline?</span>
+                                <i :data-lucide="activeFaq === 5 ? 'minus' : 'plus'" class="w-4 h-4 text-brand-copper"></i>
+                            </button>
+                            <div x-show="activeFaq === 5" x-collapse class="px-6 pb-5 text-sm text-brand-muted leading-relaxed font-light text-justify border-t border-brand-softGray pt-4">
+                                Pelaksanaan program dapat dilakukan secara online maupun hybrid, tergantung pada ketentuan dan agenda yang diumumkan pada setiap periode program.
+                            </div>
+                        </div>
+                        <div class="bg-white border border-brand-dark/5 rounded-2xl overflow-hidden shadow-sm">
+                            <button type="button" class="w-full px-6 py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper transition-colors" @click="activeFaq === 6 ? activeFaq = null : activeFaq = 6">
+                                <span>Berapa lama program berlangsung?</span>
+                                <i :data-lucide="activeFaq === 6 ? 'minus' : 'plus'" class="w-4 h-4 text-brand-copper"></i>
+                            </button>
+                            <div x-show="activeFaq === 6" x-collapse class="px-6 pb-5 text-sm text-brand-muted leading-relaxed font-light text-justify border-t border-brand-softGray pt-4">
+                                Program Setara Fellowship berlangsung selama 3 bulan dan terdiri dari beberapa tahapan pembelajaran, mentoring, serta pengembangan mini project.
+                            </div>
+                        </div>
+                        <div class="bg-white border border-brand-dark/5 rounded-2xl overflow-hidden shadow-sm">
+                            <button type="button" class="w-full px-6 py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper transition-colors" @click="activeFaq === 7 ? activeFaq = null : activeFaq = 7">
+                                <span>Apakah peserta akan mendapatkan sertifikat?</span>
+                                <i :data-lucide="activeFaq === 7 ? 'minus' : 'plus'" class="w-4 h-4 text-brand-copper"></i>
+                            </button>
+                            <div x-show="activeFaq === 7" x-collapse class="px-6 pb-5 text-sm text-brand-muted leading-relaxed font-light text-justify border-t border-brand-softGray pt-4">
+                                Ya. Peserta yang mengikuti program dan menyelesaikan seluruh rangkaian kegiatan akan memperoleh sertifikat sebagai bentuk apresiasi atas partisipasi dan komitmennya.
+                            </div>
+                        </div>
+                        <div class="bg-white border border-brand-dark/5 rounded-2xl overflow-hidden shadow-sm">
+                            <button type="button" class="w-full px-6 py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper transition-colors" @click="activeFaq === 8 ? activeFaq = null : activeFaq = 8">
+                                <span>Apakah saya akan mendapatkan mentor?</span>
+                                <i :data-lucide="activeFaq === 8 ? 'minus' : 'plus'" class="w-4 h-4 text-brand-copper"></i>
+                            </button>
+                            <div x-show="activeFaq === 8" x-collapse class="px-6 pb-5 text-sm text-brand-muted leading-relaxed font-light text-justify border-t border-brand-softGray pt-4">
+                                Ya. Peserta akan mendapatkan kesempatan belajar dan berdiskusi bersama mentor yang berasal dari berbagai latar belakang akademik maupun profesional.
+                            </div>
+                        </div>
+                        <div class="bg-white border border-brand-dark/5 rounded-2xl overflow-hidden shadow-sm">
+                            <button type="button" class="w-full px-6 py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper transition-colors" @click="activeFaq === 9 ? activeFaq = null : activeFaq = 9">
+                                <span>Apakah saya harus memiliki pengalaman organisasi atau prestasi tertentu?</span>
+                                <i :data-lucide="activeFaq === 9 ? 'minus' : 'plus'" class="w-4 h-4 text-brand-copper"></i>
+                            </button>
+                            <div x-show="activeFaq === 9" x-collapse class="px-6 pb-5 text-sm text-brand-muted leading-relaxed font-light text-justify border-t border-brand-softGray pt-4">
+                                Tidak. Program ini terbuka bagi seluruh peserta yang memiliki kemauan untuk belajar, berkembang, dan berkomitmen mengikuti program hingga selesai.
+                            </div>
+                        </div>
+                        <div class="bg-white border border-brand-dark/5 rounded-2xl overflow-hidden shadow-sm">
+                            <button type="button" class="w-full px-6 py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper transition-colors" @click="activeFaq === 10 ? activeFaq = null : activeFaq = 10">
+                                <span>Bagaimana cara mendaftar?</span>
+                                <i :data-lucide="activeFaq === 10 ? 'minus' : 'plus'" class="w-4 h-4 text-brand-copper"></i>
+                            </button>
+                            <div x-show="activeFaq === 10" x-collapse class="px-6 pb-5 text-sm text-brand-muted leading-relaxed font-light text-justify border-t border-brand-softGray pt-4">
+                                Informasi mengenai pendaftaran akan diumumkan melalui website dan media sosial resmi Sekolah Sementara. Pastikan kamu mengikuti kanal resmi kami agar tidak ketinggalan informasi terbaru.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-dark text-brand-cream rounded-[2.5rem] p-8 md:p-12 text-center relative overflow-hidden shadow-lg">
+                    <div class="absolute -top-12 -right-12 w-32 h-32 bg-brand-copper/20 rounded-full filter blur-2xl"></div>
+                    <span class="inline-block text-brand-copper bg-brand-cream px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider mb-4">Program Utama</span>
+                    <h4 class="text-2xl md:text-3xl font-bold tracking-tight mb-3">Siap Bertumbuh Bersama Sekolah Sementara?</h4>
+                    <p class="text-xs md:text-sm text-gray-300 max-w-xl mx-auto leading-relaxed mb-8 font-light">Setara Fellowship adalah program mentoring dan pengembangan diri intensif bagi pelajar di masa transisi (<span class="italic font-medium text-brand-cream">gap year</span>). Persiapkan dirimu untuk melangkah lebih jauh.</p>
+                    <a href="https://forms.gle/YQ83ppq3yELtR9v29" target="_blank" class="inline-flex items-center justify-center px-6 py-3 text-xs font-semibold text-brand-dark bg-brand-cream rounded-full hover:bg-brand-copper hover:text-brand-cream transition-all duration-300 gap-1.5 shadow-md">
+                        Daftar Setara Fellowship <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 border-t border-brand-dark/5 bg-brand-cream/40">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center" data-aos="fade-up" data-aos-duration="800">
+                <span class="text-brand-copper font-semibold text-sm tracking-wider uppercase block mb-3">Tentang Kami</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark tracking-tight mb-8">Apa itu Sekolah Sementara?</h2>
+                <div class="bg-white p-8 md:p-12 rounded-[2rem] border border-brand-dark/5 shadow-sm text-left">
+                    <p class="text-brand-muted leading-relaxed text-base md:text-lg font-light text-justify">
+                        Sekolah Sementara adalah organisasi nirlaba (non-profit organization) yang berfokus pada pengembangan kapasitas pelajar yang sedang berada dalam fase transisi menuju perguruan tinggi. Sekolah Sementara hadir untuk menghubungkan para mentor dan pelajar melalui program mentoring, pembelajaran berbasis pengalaman untuk meningkatkan kesiapan pelajar menuju perguruan tinggi.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="collaboration" class="py-24 bg-brand-cream/20 border-t border-brand-dark/5">
+        <div class="max-w-xl mx-auto px-6" data-aos="fade-up" data-aos-duration="800">
+            <div class="text-center mb-10">
+                <span class="text-brand-copper font-semibold text-sm tracking-wider uppercase block mb-3">Hubungkan Jaringan</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-brand-dark tracking-tight">Ruang Kolaborasi & Pertanyaan</h2>
+            </div>
+
+            <form onsubmit="sendEmail(event)" class="space-y-5 bg-white p-8 rounded-3xl border border-brand-dark/5 shadow-sm">
+                <div>
+                    <label class="block text-xs font-semibold text-brand-dark uppercase tracking-wider mb-2">Nama Lengkap / Instansi</label>
+                    <input type="text" id="form-name" required class="w-full px-4 py-3 bg-brand-cream rounded-xl border border-brand-dark/10 text-sm focus:outline-none focus:border-brand-copper font-light transition-colors" placeholder="Masukkan nama atau nama lembaga">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-brand-dark uppercase tracking-wider mb-2">Tujuan Pesan</label>
+                    <select id="form-intent" required class="w-full px-4 py-3 bg-brand-cream rounded-xl border border-brand-dark/10 text-sm focus:outline-none focus:border-brand-copper font-light text-brand-muted transition-colors">
+                        <option value="Pengajuan Kolaborasi / Partnership">Pengajuan Kolaborasi / Kemitraan</option>
+                        <option value="Pendaftaran Mentor / Pembicara">Tertarik Menjadi Mentor</option>
+                        <option value="Pertanyaan Umum Pelajar">Pertanyaan Umum Pelajar</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-brand-dark uppercase tracking-wider mb-2">Isi Pesan</label>
+                    <textarea id="form-message" rows="4" required class="w-full px-4 py-3 bg-brand-cream rounded-xl border border-brand-dark/10 text-sm focus:outline-none focus:border-brand-copper font-light transition-colors resize-none" placeholder="Tuliskan detail rencana kolaborasi atau pertanyaan kamu di sini..."></textarea>
+                </div>
+                <button type="submit" class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 font-semibold text-brand-cream bg-brand-dark rounded-xl hover:bg-brand-copper transition-all duration-300 shadow-md">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                    Kirim Pesan
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-brand-cream border-t border-brand-dark/5 py-16">
+        <div class="max-w-4xl mx-auto px-6 flex flex-col items-center text-center">
+            
+            <div class="mb-6">
+                <a href="#" class="font-bold text-xl tracking-tight text-brand-dark block">
+                    Sekolah Sementara.
+                </a>
+            </div>
+
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-xs font-semibold text-brand-dark uppercase tracking-widest block opacity-40">Hubungi kami</span>
+                <div class="flex items-center gap-4 text-sm font-medium">
+                    <a href="https://instagram.com/sekolahsementara" target="_blank" class="text-brand-muted hover:text-brand-copper transition-colors duration-300">
+                        Instagram
+                    </a>
+                    <span class="text-brand-dark/20">&#8226;</span>
+                    <a href="mailto:infosekolahsementara@gmail.com" class="text-brand-muted hover:text-brand-copper transition-colors duration-300">
+                        E-mail
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="max-w-6xl mx-auto px-6 mt-12 pt-6 border-t border-brand-dark/5 text-center">
+            <p class="text-[10px] text-gray-400">&copy; 2026 Sekolah Sementara. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        function sendEmail(event) {
+            event.preventDefault();
+            const name = document.getElementById('form-name').value;
+            const intent = document.getElementById('form-intent').value;
+            const message = document.getElementById('form-message').value;
+            
+            const emailTarget = "infosekolahsementara@gmail.com";
+            const subject = encodeURIComponent(`[${intent}] Sekolah Sementara - ${name}`);
+            const body = encodeURIComponent(`Halo Tim Sekolah Sementara,\n\nNama / Instansi: ${name}\nKategori Hubungan: ${intent}\n\nDetail Pesan:\n${message}`);
+            
+            window.location.href = `mailto:${emailTarget}?subject=${subject}&body=${body}`;
+        }
+
+        // Initialize Animate On Scroll
+        AOS.init({
+            once: true, 
+            offset: 120,
+        });
+        
+        // Polling inisialisasi ikon Lucide agar selalu render dengan aman
+        setTimeout(() => {
+            lucide.createIcons();
+        }, 100);
+    </script>
+</body>
+</html>
