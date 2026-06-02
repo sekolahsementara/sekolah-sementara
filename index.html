@@ -4,19 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sekolah Sementara — Belajar Hal yang Tidak Diajarkan di Sekolah</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Alpine.js Plugins (Collapse plugin diwajibkan untuk animasi FAQ yang halus) -->
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
-    <!-- Alpine.js Core -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <!-- Google Fonts: Inter (Global Professional Standard) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- AOS (Animate On Scroll) CSS for Professional Motion -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <script>
@@ -61,14 +55,12 @@
 </head>
 <body class="antialiased selection:bg-brand-softGray selection:text-brand-copper overflow-x-hidden tracking-normal" x-data="{ openFellowship: false, openCerita: false, activeFaqs: [] }">
 
-    <!-- NAVBAR -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-brand-dark/5 transition-all duration-300">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center space-x-2">
                 <span class="font-bold text-base sm:text-lg tracking-tight text-brand-dark">Sekolah Sementara.</span>
             </a>
             
-            <!-- Menu Navigasi Super Minimalis -->
             <div class="flex items-center space-x-4 sm:space-x-10 text-xs sm:text-sm font-medium tracking-tight text-brand-muted mx-auto md:mr-0 md:ml-auto">
                 <a href="#program" class="hover:text-brand-dark transition-colors">Program</a>
                 <a href="#about" class="hover:text-brand-dark transition-colors">Tentang Kami</a>
@@ -77,24 +69,19 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
     <section class="relative pt-40 pb-16 sm:pt-48 sm:pb-24 min-h-[75vh] flex items-center">
-        <!-- Abstract Premium Gradients -->
         <div class="absolute top-1/4 left-1/10 w-72 h-72 sm:w-96 sm:h-96 bg-brand-copper/5 rounded-full filter blur-3xl opacity-70 -z-10 animate-pulse" style="animation-duration: 8s;"></div>
         <div class="absolute bottom-1/4 right-1/10 w-64 h-64 sm:w-80 sm:h-80 bg-brand-dark/5 rounded-full filter blur-3xl opacity-60 -z-10 animate-pulse" style="animation-duration: 12s;"></div>
 
         <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center" data-aos="fade-up" data-aos-duration="1000">
-            <!-- Headline -->
             <h1 class="text-3xl sm:text-5xl md:text-6xl font-bold text-brand-dark tracking-tight leading-[1.2] sm:leading-[1.12] mb-6 sm:mb-8">
                 Saatnya kamu menjadi bagian <br class="hidden sm:inline"> dari perjalanan ini!
             </h1>
             
-            <!-- Subheadline -->
             <p class="text-sm sm:text-lg md:text-xl text-brand-muted max-w-3xl mx-auto leading-relaxed mb-10 sm:mb-12 font-normal opacity-90 text-justify sm:text-center tracking-wide">
                 Sebuah ruang inkubasi kepemimpinan yang menjembatani fase transisi pendidikan kamu dengan belajar langsung dari mentor yang berkompeten, desain kurikulum yang berorientasi pada masa depan, dan kesempatan untuk mengimplementasikan proyek sosial yang berdampak langsung pada masyarakat.
             </p>
             
-            <!-- CTA Button -->
             <div class="flex items-center justify-center">
                 <a href="#program" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 font-semibold text-brand-cream bg-brand-dark rounded-full hover:bg-brand-copper shadow-md shadow-brand-dark/10 transition-all duration-300 group gap-2 text-sm sm:text-base tracking-wide">
                     Pelajari Program
@@ -104,7 +91,6 @@
         </div>
     </section>
 
-    <!-- SECTION PROGRAM UTAMA -->
     <section id="program" class="py-16 sm:py-24 bg-white border-t border-brand-dark/5">
         <div class="max-w-5xl mx-auto px-4 sm:px-6">
             <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16" data-aos="fade-up" data-aos-duration="800">
@@ -114,7 +100,6 @@
 
             <div class="space-y-6">
                 
-                <!-- KARTU 1: SETARA FELLOWSHIP -->
                 <div class="p-6 sm:p-8 rounded-[1.5rem] sm:rounded-[2rem] border transition-all duration-300 cursor-pointer text-left flex flex-col justify-between min-h-[220px] sm:min-h-[260px]"
                      :class="openFellowship ? 'bg-brand-cream/50 border-brand-copper shadow-md' : 'bg-brand-cream/20 border-brand-dark/5 shadow-sm hover:border-brand-copper/40'"
                      @click="openFellowship = !openFellowship; if(openFellowship) openCerita = false;" data-aos="fade-up">
@@ -133,10 +118,8 @@
                     </div>
                 </div>
 
-                <!-- DETAIL SESI SETARA FELLOWSHIP -->
                 <div x-show="openFellowship" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 transform -translate-y-4" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-4" class="my-6 space-y-16 sm:space-y-24 border-t border-brand-dark/5 pt-10 sm:pt-16">
                     
-                    <!-- A. CURRICULUM FRAMEWORK -->
                     <div>
                         <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
                             <span class="text-brand-copper font-semibold text-[11px] sm:text-xs tracking-widest uppercase block mb-1 sm:mb-2">Struktur Silabus</span>
@@ -174,7 +157,6 @@
                         </div>
                     </div>
 
-                    <!-- B. PROGRAM JOURNEY TIMELINE -->
                     <div>
                         <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
                             <span class="text-brand-copper font-semibold text-[11px] sm:text-xs tracking-widest uppercase block mb-1 sm:mb-2">Alur Pembelajaran</span>
@@ -215,7 +197,6 @@
                         </div>
                     </div>
 
-                    <!-- C. OUTPUT PESERTA -->
                     <div>
                         <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
                             <span class="text-brand-copper font-semibold text-[11px] sm:text-xs tracking-widest uppercase block mb-1 sm:mb-2">Capaian Akhir</span>
@@ -253,7 +234,6 @@
                         </div>
                     </div>
 
-                    <!-- D. CTA FELLOWSHIP EXCLUSIVE -->
                     <div class="bg-brand-dark text-brand-cream rounded-[1.8rem] sm:rounded-[2.5rem] p-6 sm:p-12 text-center relative overflow-hidden shadow-lg">
                         <div class="absolute -top-12 -right-12 w-32 h-32 bg-brand-copper/20 rounded-full filter blur-2xl"></div>
                         <span class="inline-block text-brand-copper bg-brand-cream px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-semibold uppercase tracking-widest mb-4">Program Utama</span>
@@ -264,7 +244,6 @@
                         </a>
                     </div>
 
-                    <!-- E. FREQUENTLY ASKED QUESTIONS (FAQ) -> ULTRA-SMOOTH UP & DOWN TRANSITION -->
                     <div class="pt-6 sm:pt-8 border-t border-brand-dark/5">
                         <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
                             <span class="text-brand-copper font-semibold text-[11px] sm:text-xs tracking-widest uppercase block mb-1 sm:mb-2">Tanya Jawab</span>
@@ -272,7 +251,6 @@
                         </div>
                         <div class="space-y-3 sm:space-y-4 max-w-3xl mx-auto">
                             
-                            <!-- FAQ 1 -->
                             <div class="bg-white border border-brand-dark/5 rounded-xl sm:rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
                                 <button type="button" class="w-full px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper text-xs sm:text-sm tracking-wide transition-colors" 
                                     @click="activeFaqs.includes(1) ? activeFaqs = activeFaqs.filter(id => id !== 1) : activeFaqs.push(1)">
@@ -284,7 +262,6 @@
                                 </div>
                             </div>
                             
-                            <!-- FAQ 2 -->
                             <div class="bg-white border border-brand-dark/5 rounded-xl sm:rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
                                 <button type="button" class="w-full px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper text-xs sm:text-sm tracking-wide transition-colors" 
                                     @click="activeFaqs.includes(2) ? activeFaqs = activeFaqs.filter(id => id !== 2) : activeFaqs.push(2)">
@@ -296,7 +273,6 @@
                                 </div>
                             </div>
                             
-                            <!-- FAQ 3 -->
                             <div class="bg-white border border-brand-dark/5 rounded-xl sm:rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
                                 <button type="button" class="w-full px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper text-xs sm:text-sm tracking-wide transition-colors" 
                                     @click="activeFaqs.includes(3) ? activeFaqs = activeFaqs.filter(id => id !== 3) : activeFaqs.push(3)">
@@ -308,7 +284,6 @@
                                 </div>
                             </div>
 
-                            <!-- FAQ 4 -->
                             <div class="bg-white border border-brand-dark/5 rounded-xl sm:rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
                                 <button type="button" class="w-full px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper text-xs sm:text-sm tracking-wide transition-colors" 
                                     @click="activeFaqs.includes(4) ? activeFaqs = activeFaqs.filter(id => id !== 4) : activeFaqs.push(4)">
@@ -320,7 +295,6 @@
                                 </div>
                             </div>
 
-                            <!-- FAQ 5 -->
                             <div class="bg-white border border-brand-dark/5 rounded-xl sm:rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
                                 <button type="button" class="w-full px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper text-xs sm:text-sm tracking-wide transition-colors" 
                                     @click="activeFaqs.includes(5) ? activeFaqs = activeFaqs.filter(id => id !== 5) : activeFaqs.push(5)">
@@ -332,7 +306,6 @@
                                 </div>
                             </div>
 
-                            <!-- FAQ 6 -->
                             <div class="bg-white border border-brand-dark/5 rounded-xl sm:rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
                                 <button type="button" class="w-full px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper text-xs sm:text-sm tracking-wide transition-colors" 
                                     @click="activeFaqs.includes(6) ? activeFaqs = activeFaqs.filter(id => id !== 6) : activeFaqs.push(6)">
@@ -344,7 +317,6 @@
                                 </div>
                             </div>
 
-                            <!-- FAQ 7 -->
                             <div class="bg-white border border-brand-dark/5 rounded-xl sm:rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
                                 <button type="button" class="w-full px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper text-xs sm:text-sm tracking-wide transition-colors" 
                                     @click="activeFaqs.includes(7) ? activeFaqs = activeFaqs.filter(id => id !== 7) : activeFaqs.push(7)">
@@ -356,7 +328,6 @@
                                 </div>
                             </div>
 
-                            <!-- FAQ 8 -->
                             <div class="bg-white border border-brand-dark/5 rounded-xl sm:rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
                                 <button type="button" class="w-full px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper text-xs sm:text-sm tracking-wide transition-colors" 
                                     @click="activeFaqs.includes(8) ? activeFaqs = activeFaqs.filter(id => id !== 8) : activeFaqs.push(8)">
@@ -368,7 +339,6 @@
                                 </div>
                             </div>
 
-                            <!-- FAQ 9 -->
                             <div class="bg-white border border-brand-dark/5 rounded-xl sm:rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
                                 <button type="button" class="w-full px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper text-xs sm:text-sm tracking-wide transition-colors" 
                                     @click="activeFaqs.includes(9) ? activeFaqs = activeFaqs.filter(id => id !== 9) : activeFaqs.push(9)">
@@ -380,7 +350,6 @@
                                 </div>
                             </div>
 
-                            <!-- FAQ 10 -->
                             <div class="bg-white border border-brand-dark/5 rounded-xl sm:rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
                                 <button type="button" class="w-full px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between text-left font-semibold text-brand-dark hover:text-brand-copper text-xs sm:text-sm tracking-wide transition-colors" 
                                     @click="activeFaqs.includes(10) ? activeFaqs = activeFaqs.filter(id => id !== 10) : activeFaqs.push(10)">
@@ -397,7 +366,6 @@
 
                 </div>
 
-                <!-- KARTU 2: CERITA SEBELUM KULIAH -->
                 <div class="p-6 sm:p-8 rounded-[1.5rem] sm:rounded-[2rem] border transition-all duration-300 cursor-pointer text-left flex flex-col justify-between min-h-[220px] sm:min-h-[260px] mt-4"
                      :class="openCerita ? 'bg-brand-cream/50 border-brand-dark shadow-md' : 'bg-brand-cream/20 border-brand-dark/5 shadow-sm hover:border-brand-dark/40'"
                      @click="openCerita = !openCerita; if(openCerita) openFellowship = false;" data-aos="fade-up">
@@ -426,7 +394,6 @@
         </div>
     </section>
 
-    <!-- ABOUT SECTION -->
     <section id="about" class="py-16 sm:py-24 border-t border-brand-dark/5 bg-brand-cream/40">
         <div class="max-w-4xl mx-auto px-4 sm:px-6">
             <div class="text-center" data-aos="fade-up" data-aos-duration="800">
@@ -441,7 +408,6 @@
         </div>
     </section>
 
-    <!-- FORM KOLABORASI & PERTANYAAN -->
     <section id="collaboration" class="py-16 sm:py-24 bg-brand-cream/20 border-t border-brand-dark/5">
         <div class="max-w-xl mx-auto px-4 sm:px-6" data-aos="fade-up" data-aos-duration="800">
             <div class="text-center mb-8 sm:mb-10">
@@ -451,8 +417,7 @@
 
             <form id="collab-form" onsubmit="handleSubmit(event)" class="space-y-4 sm:space-y-5 bg-white p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-brand-dark/5 shadow-sm relative">
                 
-                <!-- Access Key Resmi Berhasil Dikonfigurasi -->
-                <input type="hidden" name="access_key" value="57e31837-1116-4492-875c-a40320dfc3f7">
+                <input type="hidden" name="access_key" value="57e31837-1116-4692-875c-a40320dfc3f7">
                 <input type="hidden" name="subject" value="[Kontak Website] Pesan Baru Sekolah Sementara">
                 <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
@@ -473,15 +438,11 @@
                     <textarea name="message" rows="4" required class="w-full px-4 py-3 bg-brand-cream rounded-xl border border-brand-dark/10 text-xs sm:text-sm focus:outline-none focus:border-brand-copper font-normal tracking-wide transition-colors resize-none" placeholder="Tuliskan detail rencana kolaborasi atau pertanyaan kamu di sini..."></textarea>
                 </div>
 
-                <!-- Notifikasi Real-time AJAX Form Status -->
                 <div id="form-result" class="text-xs font-medium tracking-wide hidden rounded-xl p-3 text-center transition-all duration-300"></div>
 
-                <!-- Tombol Dengan Efek Motion Profesional -->
                 <button type="submit" id="submit-btn" class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 font-semibold text-brand-cream bg-brand-dark rounded-xl hover:bg-brand-copper transition-all duration-300 shadow-md text-xs sm:text-sm tracking-wide disabled:cursor-not-allowed">
-                    <!-- Ikon Default -->
                     <i id="btn-icon" data-lucide="send" class="w-3.5 h-3.5 transition-transform duration-300"></i>
                     
-                    <!-- SVG Loading Spinner -->
                     <svg id="btn-spinner" class="animate-spin -ml-1 mr-1 h-4 w-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -493,7 +454,6 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="bg-brand-cream border-t border-brand-dark/5 py-12 sm:py-16">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center">
             
@@ -522,7 +482,6 @@
         </div>
     </footer>
 
-    <!-- AOS JS Library for Professional Motion Animations -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         async function handleSubmit(event) {
